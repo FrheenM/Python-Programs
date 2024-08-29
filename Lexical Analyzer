@@ -1,0 +1,46 @@
+import string
+#Declaring all the variables
+special_char=[';','{','}','[',']','(',')','"',"'",'<','>','+','*','/','^','=']
+spc_extend=['~','.','#',',','&','|','%','!',':','\\']
+special_char.extend(spc_extend)
+word_list=[]
+lstring='a b c d e f g h i j k l m n o p q r s t u v w x y z'
+ustring=lstring.upper()
+lstring=ustring+" "+lstring
+letters=lstring.split()
+al=list(letters)
+dig='0 1 2 3 4 5 6 7 8 9'
+digits=dig.split()
+lnd=al+digits
+frequency = { }
+w=""
+#To take input of filename 
+filename=input("\n\nEnter the filename with extension: ")
+file = open(filename,'r')
+#Adding token to array 
+for line in file:
+    for character in line: 
+        if character in lnd:
+            w+=character
+        elif character in special_char:
+            if w!="":
+                word_list.append(w)
+                w=""
+            word_list.append(character)
+        elif character ==" ":
+            if w!="":
+                word_list.append(w)
+                w=""
+#Printing the tokens in the array               
+print("\n------------------List of tokens in the file------------------\n")
+for word in word_list:
+    print(word)
+#For counting the frequency of words
+for word in word_list:
+    count = frequency.get(word,0)
+    frequency[word] = count + 1     
+frequency_list = frequency.keys()
+print("\n------------------Frequency of each word in the file------------------\n")
+#Printing the frequency of words 
+for words in frequency_list:
+    print(words, frequency[words])
