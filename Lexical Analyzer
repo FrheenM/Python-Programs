@@ -1,4 +1,5 @@
 import string
+
 #Declaring all the variables
 special_char=[';','{','}','[',']','(',')','"',"'",'<','>','+','*','/','^','=']
 spc_extend=['~','.','#',',','&','|','%','!',':','\\']
@@ -14,9 +15,11 @@ digits=dig.split()
 lnd=al+digits
 frequency = { }
 w=""
+
 #To take input of filename 
 filename=input("\n\nEnter the filename with extension: ")
 file = open(filename,'r')
+
 #Adding token to array 
 for line in file:
     for character in line: 
@@ -31,16 +34,23 @@ for line in file:
             if w!="":
                 word_list.append(w)
                 w=""
-#Printing the tokens in the array               
+
+
+#Printing the tokens in the array          
 print("\n------------------List of tokens in the file------------------\n")
 for word in word_list:
     print(word)
+
+
 #For counting the frequency of words
 for word in word_list:
     count = frequency.get(word,0)
     frequency[word] = count + 1     
 frequency_list = frequency.keys()
+
+
 print("\n------------------Frequency of each word in the file------------------\n")
+
 #Printing the frequency of words 
 for words in frequency_list:
     print(words, frequency[words])
